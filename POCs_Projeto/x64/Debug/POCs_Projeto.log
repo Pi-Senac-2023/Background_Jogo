@@ -1,2 +1,5 @@
 ﻿  POCs_Projeto.c
-  POCs_Projeto.vcxproj -> C:\Users\chris\Desktop\Programacao\Estudo_C\POCs_Projeto\x64\Debug\POCs_Projeto.exe
+C:\Users\chris\Desktop\Programacao\Estudo_C\PI_2Sem\POCs_Projeto\POCs_Projeto\POCs_Projeto.c(15,17): warning C4098: 'initialize': função 'void' retornando um valor
+C:\Users\chris\Desktop\Programacao\Estudo_C\PI_2Sem\POCs_Projeto\POCs_Projeto\POCs_Projeto.c(20,17): warning C4098: 'initialize': função 'void' retornando um valor
+C:\Users\chris\Desktop\Programacao\Estudo_C\PI_2Sem\POCs_Projeto\POCs_Projeto\POCs_Projeto.c(25,21): warning C4098: 'initialize': função 'void' retornando um valor
+  POCs_Projeto.vcxproj -> C:\Users\chris\Desktop\Programacao\Estudo_C\PI_2Sem\POCs_Projeto\x64\Debug\POCs_Projeto.exe
