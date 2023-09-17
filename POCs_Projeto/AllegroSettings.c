@@ -1,21 +1,17 @@
 #include "AllegroSettings.h"
 
 
+void must_init(bool test, char* desc) {
+    if (!test) {
+        printf("Falha na inicialização do %s!\n ", desc);
+    }
+}
+
 void initialize() {
-    if (!al_init()) {
-        printf("[ERROR] Não foi possível iniciar o allegro!");
-        return 1;
-    }
-    if (!al_install_keyboard())
-    {
-        printf("[ERROR] Não foi instalar o teclado!");
-        return 1;
-    }
-    if (!al_init_primitives_addon())
-    {
-        printf("Falha ao inicializar add-on primitiva.");
-        return false;
-    }
+    must_init(al_init(), "Allegro");
+    must_init(al_install_keyboard(), "Teclado");
+    must_init(al_install_mouse(), "Mouse");
+    must_init(al_init_primitives_addon(), "Primitives Addon");
 }
 
 void finish(ALLEGRO_TIMER* timer, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_DISPLAY* disp, ALLEGRO_FONT* font) {
@@ -29,6 +25,7 @@ void finish(ALLEGRO_TIMER* timer, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_DISPLAY* d
 
 void registersEvent(ALLEGRO_DISPLAY* disp, ALLEGRO_TIMER* timer, ALLEGRO_EVENT_QUEUE* queue) {
     al_register_event_source(queue, al_get_keyboard_event_source());
+    al_register_event_source(queue, al_get_mouse_event_source());
     al_register_event_source(queue, al_get_display_event_source(disp));
     al_register_event_source(queue, al_get_timer_event_source(timer));
 }

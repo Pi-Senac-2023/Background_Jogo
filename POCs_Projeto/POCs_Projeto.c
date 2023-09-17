@@ -5,18 +5,16 @@
 #include "AllegroSettings.h"
 #include "ProgramTypes.h"
 
-
-float PositionY = 0.0;
-float PositionX = 0.0;
-int sectionWidth = 1;
-
 int main()
 {
-    DisplaySettings* Display;
-    Display = malloc(sizeof(*Display));
-    if (Display != NULL) {
+    DisplaySettings* Display = malloc(sizeof(DisplaySettings));
+    PositionMouse* Mouse = malloc(sizeof(PositionMouse));
+    
+    if (Display != NULL && Mouse != NULL) {
         Display->Height = 720;
         Display->Width = 920;
+        Mouse->x = 0;
+        Mouse->y = 0;
 
         initialize();
 
@@ -49,21 +47,29 @@ int main()
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
                 done = true;
                 break;
+            case ALLEGRO_EVENT_MOUSE_AXES:
+                Mouse->x = event.mouse.x;
+                Mouse->y = event.mouse.y;
+                break;
+            case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
+                if(event.mouse.button == 1)
+                    al_draw_filled_rectangle(Mouse->x - 15, Mouse->y - 15, Mouse->x + 15, Mouse->y + 15, al_map_rgb(0, 0, 255));
+                else
+                    al_draw_filled_rectangle(Mouse->x - 15, Mouse->y - 15, Mouse->x + 15, Mouse->y + 15, al_map_rgb(255, 0, 0));
+
             }
 
             if (done) break;
 
             if (redraw && al_is_event_queue_empty(queue))
-            {
-                al_clear_to_color(al_map_rgb(255, 255, 255));
-                al_draw_filled_rectangle(PositionX, PositionY, PositionX + 30, PositionY + 30, al_map_rgb(255, 0, 0));
+            {   
                 al_flip_display();
                 redraw = false;
             }
         }
 
         finish(timer, queue, disp, font);
-        freeAllTypes(Display);
+        freeAllTypes(Display, Mouse);
     }
     return 0;
 }

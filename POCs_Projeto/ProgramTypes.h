@@ -7,5 +7,10 @@
         int Height;
     } DisplaySettings;
     
-    void freeAllTypes(DisplaySettings* Display);
+    typedef struct PositionMouse {
+        int x;
+        int y;
+    } PositionMouse;
+
+    void freeAllTypes(DisplaySettings* Display, PositionMouse* Mouse);
 #endif
