@@ -127,7 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AllegroSettings.c" />
     <ClCompile Include="POCs_Projeto.c" />
+    <ClCompile Include="ProgramTypes.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AllegroSettings.h" />
+    <ClInclude Include="ProgramTypes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
