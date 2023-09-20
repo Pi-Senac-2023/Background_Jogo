@@ -1,2 +1,0 @@
-C:\Users\chris\Desktop\Programacao\Estudo_C\POCs_Projeto\POCs_Projeto\x64\Debug\POCs_Projeto.vcxproj.CopyComplete
-C:\Users\chris\Desktop\Programacao\Estudo_C\PI_2Sem\POCs_Projeto\POCs_Projeto\x64\Debug\POCs_Projeto.vcxproj.CopyComplete

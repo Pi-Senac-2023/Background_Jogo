@@ -13,30 +13,28 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Arquivos de Origem\AllegroSettings">
-      <UniqueIdentifier>{ae89f91f-6b3f-4aa2-944d-5ff04337f013}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Arquivos de Origem\Types">
-      <UniqueIdentifier>{c15cc42e-7b4e-4729-9915-9ea21f55f569}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="POCs_Projeto.c">
+    <None Include="packages.config" />
+    <None Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramTypes.c">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="AllegroSettings.c">
-      <Filter>Arquivos de Origem\AllegroSettings</Filter>
-    </ClCompile>
-    <ClCompile Include="ProgramTypes.c">
-      <Filter>Arquivos de Origem\Types</Filter>
+      <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroSettings.h">
-      <Filter>Arquivos de Origem\AllegroSettings</Filter>
+      <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="ProgramTypes.h">
-      <Filter>Arquivos de Origem\Types</Filter>
+      <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 
 void must_init(bool test, char* desc) {
     if (!test) {
-        printf("Falha na inicialização do %s!\n ", desc);
+        printf("Falha na inicializa??o do %s!\n ", desc);
     }
 }
 
