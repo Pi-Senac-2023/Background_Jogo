@@ -4,17 +4,25 @@
 #include <allegro5/allegro_primitives.h>
 #include "AllegroSettings.h"
 #include "ProgramTypes.h"
+#include "Buttons.h"
 
 int main()
 {
     DisplaySettings* Display = malloc(sizeof(DisplaySettings));
     PositionMouse* Mouse = malloc(sizeof(PositionMouse));
+    ButtonSettings* Button = malloc(sizeof(ButtonSettings));
+
+    Button->buttonX = 100;
+    Button->buttonY = 100;
+    Button->width = 120;
+    Button->height = 100;
 
     if (Display != NULL && Mouse != NULL) {
         Display->Height = 720;
         Display->Width = 920;
         Mouse->x = 0;
         Mouse->y = 0;
+
 
         initialize();
 
@@ -34,6 +42,8 @@ int main()
         ALLEGRO_EVENT event;
         al_start_timer(timer);
 
+        al_draw_filled_rectangle(Button->buttonX - Button->width, Button->buttonY - Button->height, Button->buttonX + Button->width, Button->buttonY + Button->height, al_map_rgb(0, 0, 255));
+
         while (1)
         {
             bool done = false;
@@ -52,10 +62,13 @@ int main()
                 Mouse->y = event.mouse.y;
                 break;
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
-                if (event.mouse.button == 1)
+                if (event.mouse.button == 1) {
                     al_draw_filled_rectangle(Mouse->x - 15, Mouse->y - 15, Mouse->x + 15, Mouse->y + 15, al_map_rgb(0, 0, 255));
-                else
+                    checkButtonOnSpace(Mouse, Button);
+                }
+                else {
                     al_draw_filled_rectangle(Mouse->x - 15, Mouse->y - 15, Mouse->x + 15, Mouse->y + 15, al_map_rgb(255, 0, 0));
+                }
 
             }
 

@@ -1,16 +1,18 @@
 #pragma once
 #include <stdlib.h>
 #include <stdbool.h>
+#include "ProgramTypes.h"
 #ifndef BUTTONS
 #define BUTTONS
 
-typedef struct buttonSettings {
+typedef struct ButtonSettings {
 	int width;
 	int height;
 	int buttonX;
-	int buttonsY;
-	bool status;
-} buttonSettings;
+	int buttonY;
+} ButtonSettings;
 
-void freeAllSettings(buttonSettings* settings);
+void checkButtonOnSpace(PositionMouse* mouse ,ButtonSettings* button);
+
+void freeAllSettings(ButtonSettings* settings);
 #endif

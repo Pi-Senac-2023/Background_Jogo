@@ -1,3 +1,3 @@
-﻿  AllegroSettings.c
-C:\Users\i9 BrGroup\source\repos\POCs_projeto\POCs_projeto\AllegroSettings.c(6,9): warning C4013: 'printf' indefinido; assumindo extern retornando int
-  POCs_projeto.vcxproj -> C:\Users\i9 BrGroup\source\repos\POCs_projeto\x64\Debug\POCs_projeto.exe
+﻿  Buttons.c
+C:\Users\i9 BrGroup\Documents\Dev\POCs_Projeto\POCs_projeto\Buttons.c(29,4): warning C4013: 'printf' indefinido; assumindo extern retornando int
+  POCs_projeto.vcxproj -> C:\Users\i9 BrGroup\Documents\Dev\POCs_Projeto\x64\Debug\POCs_projeto.exe
