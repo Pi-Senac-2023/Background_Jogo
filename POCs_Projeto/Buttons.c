@@ -10,7 +10,7 @@ void createButton(ButtonSettings *settings ,int widthWant,int heightWant) {
 
 }
 
-void checkButtonOnSpace(PositionMouse* mouse, ButtonSettings* button) {
+int checkButtonOnSpace(PositionMouse* mouse, ButtonSettings* button) {
 	int mouseX = mouse->x;
 	int mouseY = mouse->y;
 
@@ -19,18 +19,22 @@ void checkButtonOnSpace(PositionMouse* mouse, ButtonSettings* button) {
 	int buttonX = button->buttonX;
 	int buttonY = button->buttonY;
 
-	//printf("ButtonX:%d, ButtonY:%d", buttonX, buttonY);
 
 	int width = button->width;
 	int height = button->height;
 
-	if (buttonX >= mouseX && mouseX <= buttonX + width) {
-		if(buttonY >= mouseY && mouseY <= buttonY + height) { 
-			printf("ok!! MouseX:%d, MouseY:%d", mouseX, mouseY);
+	//printf("buttonX: %d, buttonY: %d\n", width + buttonX, height+buttonY);
+
+	
+	if (buttonX <= mouseX && buttonY <= mouseY) {
+		if(mouseX <= buttonX + width && mouseY <= buttonY + height) {
+			//printf("ok!! MouseX:%d, MouseY:%d\n", mouseX, mouseY);
+			return 1;
 		}
 	}
 	else {
-		printf("fora!! MouseX:%d, MouseY:%d", mouseX, mouseY);
+		//printf("fora!! MouseX:%d, MouseY:%d\n", mouseX, mouseY);
+		return 0;
 	}
-
+	
 }

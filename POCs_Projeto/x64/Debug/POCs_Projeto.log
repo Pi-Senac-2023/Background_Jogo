@@ -1,3 +1,2 @@
-﻿  Buttons.c
-C:\Users\i9 BrGroup\Documents\Dev\POCs_Projeto\POCs_projeto\Buttons.c(29,4): warning C4013: 'printf' indefinido; assumindo extern retornando int
+﻿  main.c
   POCs_projeto.vcxproj -> C:\Users\i9 BrGroup\Documents\Dev\POCs_Projeto\x64\Debug\POCs_projeto.exe

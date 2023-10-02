@@ -12,16 +12,18 @@ int main()
     PositionMouse* Mouse = malloc(sizeof(PositionMouse));
     ButtonSettings* Button = malloc(sizeof(ButtonSettings));
 
-    Button->buttonX = 100;
-    Button->buttonY = 100;
-    Button->width = 120;
-    Button->height = 100;
+    
 
     if (Display != NULL && Mouse != NULL) {
         Display->Height = 720;
         Display->Width = 920;
         Mouse->x = 0;
         Mouse->y = 0;
+
+        Button->buttonX = 100;
+        Button->buttonY = 100;
+        Button->width = 120;
+        Button->height = 100;
 
 
         initialize();
@@ -42,7 +44,7 @@ int main()
         ALLEGRO_EVENT event;
         al_start_timer(timer);
 
-        al_draw_filled_rectangle(Button->buttonX - Button->width, Button->buttonY - Button->height, Button->buttonX + Button->width, Button->buttonY + Button->height, al_map_rgb(0, 0, 255));
+        al_draw_filled_rectangle(Button->buttonX, Button->buttonY, Button->buttonX + Button->width, Button->buttonY + Button->height, al_map_rgb(0, 0, 255));
 
         while (1)
         {

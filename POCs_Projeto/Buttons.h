@@ -6,13 +6,13 @@
 #define BUTTONS
 
 typedef struct ButtonSettings {
-	int width;
-	int height;
+	float width;
+	float height;
 	int buttonX;
 	int buttonY;
 } ButtonSettings;
 
-void checkButtonOnSpace(PositionMouse* mouse ,ButtonSettings* button);
+int checkButtonOnSpace(PositionMouse* mouse ,ButtonSettings* button);
 
 void freeAllSettings(ButtonSettings* settings);
 #endif
