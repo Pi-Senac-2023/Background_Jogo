@@ -12,6 +12,7 @@ void initialize() {
     must_init(al_install_keyboard(), "Teclado");
     must_init(al_install_mouse(), "Mouse");
     must_init(al_init_primitives_addon(), "Primitives Addon");
+    must_init(al_init_font_addon(), "Fonte");
 }
 
 void finish(ALLEGRO_TIMER* timer, ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_DISPLAY* disp, ALLEGRO_FONT* font) {
