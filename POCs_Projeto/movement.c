@@ -4,27 +4,23 @@ void freeAllCharacter(Character* persona){
 	free(persona);
 }
 
-void movement(Character* persona, ALLEGRO_EVENT* event) {
-	
-	int x = persona->positionX;
-	int y = persona->positionY;
-
-
-	switch (event.keyboard.keycode) {
-		case ALLEGRO_KEY_UP:
-			y++;
-			break;
-		case ALLEGRO_KEY_DOWN:
-			y--;
-			break;
-		case ALLEGRO_KEY_LEFT:
-			x--;
-			break;
-		case ALLEGRO_KEY_RIGHT:
-			x++;
-			break;
-
+void movement(Character* persona, ALLEGRO_EVENT* event ) {
+		
+	switch (event->keyboard.keycode) {
+				case ALLEGRO_KEY_UP:
+					persona->positionY -= 10;
+					break;
+				case ALLEGRO_KEY_DOWN:
+					persona->positionY += 10;
+					break;
+				case ALLEGRO_KEY_LEFT:
+					persona->positionX -= 10;
+					break;
+				case ALLEGRO_KEY_RIGHT:
+					persona->positionX += 10;
+					break;
+		
 	}
-
-	printf("PersonaX: %d, PersonaY: %d", x, y);
+	
+	printf("PersonaX: %d, PersonaY: %d", persona->positionX, persona->positionY);
 }

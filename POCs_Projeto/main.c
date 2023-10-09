@@ -57,6 +57,7 @@ int main()
             bool done = false;
 
             al_draw_filled_rectangle(Button->buttonX, Button->buttonY, Button->buttonX + Button->width, Button->buttonY + Button->height, al_map_rgb(0, 0, 255));
+            al_draw_filled_rectangle(persona->positionX, persona->positionY, persona->positionX + 15, persona->positionY + 15, al_map_rgb(255, 0, 0));
 
             al_wait_for_event(queue, &event);
 
@@ -71,15 +72,16 @@ int main()
                 Mouse->x = event.mouse.x;
                 Mouse->y = event.mouse.y;
                 break;
-            case ALLEGRO_EVENT_KEY_CHAR:
+            case ALLEGRO_EVENT_KEY_DOWN:
                 movement(persona, event);
+                break;
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                 if (event.mouse.button == 1) {
                     al_draw_filled_rectangle(Mouse->x - 15, Mouse->y - 15, Mouse->x + 15, Mouse->y + 15, al_map_rgb(0, 0, 255));
                     int vasco = checkButtonOnSpace(Mouse, Button);           
                 }
                 else {
-                    al_draw_filled_rectangle(Mouse->x - 15, Mouse->y - 15, Mouse->x + 15, Mouse->y + 15, al_map_rgb(255, 0, 0));
+                    al_draw_filled_rectangle(Mouse->x - 105, Mouse->y - 15, Mouse->x + 105, Mouse->y + 15, al_map_rgb(255, 0, 0));
                 }
 
             }
@@ -88,6 +90,7 @@ int main()
 
             if (redraw && al_is_event_queue_empty(queue))
             {
+                
                 al_flip_display();
                 redraw = false;
             }
