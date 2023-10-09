@@ -148,11 +148,13 @@
     <ClCompile Include="AllegroSettings.c" />
     <ClCompile Include="Buttons.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="movement.c" />
     <ClCompile Include="ProgramTypes.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroSettings.h" />
     <ClInclude Include="Buttons.h" />
+    <ClInclude Include="movement.h" />
     <ClInclude Include="ProgramTypes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

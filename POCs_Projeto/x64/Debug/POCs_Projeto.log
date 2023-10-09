@@ -1,3 +1,5 @@
-﻿  Buttons.c
-C:\Users\i9 BrGroup\Documents\Dev\POCs_Projeto\POCs_projeto\Buttons.c(31,4): warning C4013: 'printf' indefinido; assumindo extern retornando int
-  POCs_projeto.vcxproj -> C:\Users\i9 BrGroup\Documents\Dev\POCs_Projeto\x64\Debug\POCs_projeto.exe
+﻿  main.c
+  movement.c
+C:\Users\i9 BrGroup\Documents\Dev\POCs_Projeto\POCs_projeto\movement.c(31,2): warning C4013: 'printf' indefinido; assumindo extern retornando int
+  Gerando Código...
+C:\Users\i9 BrGroup\Documents\Dev\POCs_Projeto\POCs_projeto\movement.c(15): error C4700: variável local não inicializada 'event' usada
