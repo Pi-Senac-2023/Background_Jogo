@@ -25,7 +25,6 @@ int main()
         Button->width = 120;
         Button->height = 100;
 
-
         initialize();
 
         ALLEGRO_TIMER* timer = al_create_timer(1.0 / 30.0);
@@ -44,11 +43,13 @@ int main()
         ALLEGRO_EVENT event;
         al_start_timer(timer);
 
-        al_draw_filled_rectangle(Button->buttonX, Button->buttonY, Button->buttonX + Button->width, Button->buttonY + Button->height, al_map_rgb(0, 0, 255));
+        
 
         while (1)
         {
             bool done = false;
+
+            al_draw_filled_rectangle(Button->buttonX, Button->buttonY, Button->buttonX + Button->width, Button->buttonY + Button->height, al_map_rgb(0, 0, 255));
 
             al_wait_for_event(queue, &event);
 
@@ -66,7 +67,7 @@ int main()
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                 if (event.mouse.button == 1) {
                     al_draw_filled_rectangle(Mouse->x - 15, Mouse->y - 15, Mouse->x + 15, Mouse->y + 15, al_map_rgb(0, 0, 255));
-                    checkButtonOnSpace(Mouse, Button);
+                    int vasco = checkButtonOnSpace(Mouse, Button);           
                 }
                 else {
                     al_draw_filled_rectangle(Mouse->x - 15, Mouse->y - 15, Mouse->x + 15, Mouse->y + 15, al_map_rgb(255, 0, 0));

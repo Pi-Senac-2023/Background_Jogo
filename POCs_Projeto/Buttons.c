@@ -20,21 +20,20 @@ int checkButtonOnSpace(PositionMouse* mouse, ButtonSettings* button) {
 	int buttonY = button->buttonY;
 
 
-	int width = button->width;
-	int height = button->height;
+	float width = button->width;
+	float height = button->height;
 
 	//printf("buttonX: %d, buttonY: %d\n", width + buttonX, height+buttonY);
 
 	
 	if (buttonX <= mouseX && buttonY <= mouseY) {
 		if(mouseX <= buttonX + width && mouseY <= buttonY + height) {
-			//printf("ok!! MouseX:%d, MouseY:%d\n", mouseX, mouseY);
+			printf("ok!! MouseX:%d, MouseY:%d\n", mouseX, mouseY);
 			return 1;
 		}
 	}
-	else {
-		//printf("fora!! MouseX:%d, MouseY:%d\n", mouseX, mouseY);
-		return 0;
-	}
+	
+	printf("fora!! MouseX:%d, MouseY:%d\n", mouseX, mouseY);
+	return 0;
 	
 }
