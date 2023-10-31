@@ -6,11 +6,13 @@
 #include "ProgramTypes.h"
 #include "Buttons.h"
 
+
 int main()
 {
     DisplaySettings* Display = malloc(sizeof(DisplaySettings));
     PositionMouse* Mouse = malloc(sizeof(PositionMouse));
     ButtonSettings* Button = malloc(sizeof(ButtonSettings));
+    ButtonSettings* ButtonT = malloc(sizeof(ButtonSettings));
 
     
 
@@ -24,6 +26,13 @@ int main()
         Button->buttonY = 100;
         Button->width = 120;
         Button->height = 100;
+
+
+        ButtonT->buttonX = 250;
+        ButtonT->buttonY = 10;
+        ButtonT->width = 220;
+        ButtonT->height = 180;
+
 
         initialize();
 
@@ -49,7 +58,9 @@ int main()
         {
             bool done = false;
 
-            al_draw_filled_rectangle(Button->buttonX, Button->buttonY, Button->buttonX + Button->width, Button->buttonY + Button->height, al_map_rgb(0, 0, 255));
+            createButton(Button);
+
+            createButton(ButtonT);
 
             al_wait_for_event(queue, &event);
 
@@ -67,7 +78,17 @@ int main()
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
                 if (event.mouse.button == 1) {
                     al_draw_filled_rectangle(Mouse->x - 15, Mouse->y - 15, Mouse->x + 15, Mouse->y + 15, al_map_rgb(0, 0, 255));
-                    int vasco = checkButtonOnSpace(Mouse, Button);           
+                    int btn1 = checkButtonOnSpace(Mouse, Button);  
+                    int btn2 = checkButtonOnSpace(Mouse, ButtonT);
+
+                    if (btn1 == 1) {
+                        al_clear_to_color(al_map_rgb(0, 55, 0));
+                    }
+                    else {
+                        if (btn2 == 1) {
+                            al_clear_to_color(al_map_rgb(55, 0, 0));
+                        }
+                    }
                 }
                 else {
                     al_draw_filled_rectangle(Mouse->x - 15, Mouse->y - 15, Mouse->x + 15, Mouse->y + 15, al_map_rgb(255, 0, 0));
