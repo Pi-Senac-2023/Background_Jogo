@@ -7,65 +7,31 @@
 #include "ProgramTypes.h"
 #include <stdlib.h>
 #include <string.h>
+#include "createLine.h"
+#include "ProgramSettings.h"
 
-int** setScreenConfig(DisplaySettings* Display) {
-        int** screen = malloc(Display->Height * sizeof(int*));
-        if (screen) {
-            for (int i = 0; i < Display->Height; i++) {
-                screen[i] = malloc(Display->Width * sizeof(int*));
-            }
-        }
-        return screen;
-}
 
-void tracejarLinha(int** matriz, int x1, int y1, int x2, int y2) {
-    int dx, dy, p, x, y;
+// area clickable = 10
 
-    dx = x2 - x1;
-    dy = y2 - y1;
 
-    x = x1;
-    y = y1;
-
-    p = 2 * dy - dx;
-
-    while (x < x2) {
-        if (p >= 0) {
-            matriz[y][x] = 2;
-            y++;
-            p = p + 2 * dy - 2 * dx;
-        }
-        else {
-            matriz[y][x] = 2;
-            p = p + 2 * dy;
-        }
-        printf("x:%d y:%d\n", x, y);
-        x++;
-    }
-}
-
-void createLine(DisplaySettings* Display){ 
-    int* pos = malloc(sizeof(int)*4);
-    int index = 0;
-    for (int i = 0; i < Display->Height; i++) {
-        for (int j = 0; j < Display->Width; j++) {
-            if (Display->screen[i][j] == 3 && pos) {
-                pos[index++] = j;
-                pos[index++] = i;
-
-                if (Display->screen[i][j] == 3)
-                    Display->screen[i][j] = 4;
-                
-                al_draw_circle(j,i,4, al_map_rgb(0, 255, 0),4);
-            }
+void createClickableArea(DisplaySettings* Display, int xPoint, int yPoint, int radius) {
+    for (int x = 0; x < Display->Height; x++) {
+        for (int y = 0; y < Display->Width; y++) {
+            int distance = (x - xPoint) * (x - xPoint) + (y - yPoint) * (y - yPoint);
+            if(distance == radius * radius)
+                Display->screen[x][y] = 10;
         }
     }
-    
-    tracejarLinha(Display->screen, pos[0], pos[1], pos[2], pos[3]);
-    al_draw_line(pos[0], pos[1], pos[2], pos[3], al_map_rgb(0, 0, 255), 4);
-    index = 0;
 
-    free(pos);
+}
+
+bool isClickableArea(int** screen, int xClicked, int yClicked) {
+    printf("x:%d y:%d", xClicked, yClicked);
+
+    bool response = false;
+    if (screen[yClicked][xClicked] == 10)
+        response = true;
+    return response;
 }
 
 int main()
@@ -80,16 +46,14 @@ int main()
         Mouse->x = 0;
         Mouse->y = 0;
 
-        int counter = 0;
 
         if (Display->screen) {
-            for (int i = 0; i < Display->Height; i++) {
-                for (int j = 0; j < Display->Width; j++) {
-                    Display->screen[i][j] = 1;
-                    counter++;
+            for (int x = 0; x < Display->Height; x++) {
+                for (int y = 0; y < Display->Width; y++) {
+                    Display->screen[x][y] = 1;
                 }
             }
-       }
+        }
 
         initialize();
 
@@ -109,6 +73,8 @@ int main()
         ALLEGRO_EVENT event;
         al_start_timer(timer);
         int links = 0;
+
+        createClickableArea(Display,10,10,5);
 
         while (true)
         {
@@ -131,11 +97,13 @@ int main()
                     if (event.mouse.button == 1 && Display->screen) {
                         int x = Mouse->x;
                         int y = Mouse->y;
-                        Display->screen[--y][--x] = 3;
-                        links++;
-                        if (links == 2) {
-                            createLine(Display);
-                            links = 0;
+                        if (isClickableArea(Display->screen,x,y)) {
+                            Display->screen[--y][--x] = 3;
+                            links++;
+                            if (links == 2) {
+                                createLine(Display);
+                                links = 0;
+                            }
                         }
                     }
                     break;

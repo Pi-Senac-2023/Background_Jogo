@@ -1,4 +1,10 @@
 #include "AllegroSettings.h"
+#include <allegro5/events.h>
+#include <allegro5/timer.h>
+#include <allegro5/display.h>
+#include <allegro5/keyboard.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_primitives.h>
 
 
 void must_init(bool test, char* desc) {

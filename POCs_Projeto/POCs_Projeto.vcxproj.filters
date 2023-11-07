@@ -19,6 +19,15 @@
     <Filter Include="Arquivos de Origem\Types">
       <UniqueIdentifier>{c15cc42e-7b4e-4729-9915-9ea21f55f569}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arquivos de Origem\utils">
+      <UniqueIdentifier>{44538309-9503-4b6e-8d34-898d3c937fe3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\utils\lines">
+      <UniqueIdentifier>{e44d0890-3186-4343-a52d-d5b2589eb7f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\ProgramSettings">
+      <UniqueIdentifier>{8a94827e-e310-4434-aeeb-6db75e834f42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="POCs_Projeto.c">
@@ -30,13 +39,28 @@
     <ClCompile Include="ProgramTypes.c">
       <Filter>Arquivos de Origem\Types</Filter>
     </ClCompile>
+    <ClCompile Include="createLine.c">
+      <Filter>Arquivos de Origem\utils\lines</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramSettings.c">
+      <Filter>Arquivos de Origem\ProgramSettings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllegroSettings.h">
-      <Filter>Arquivos de Origem\AllegroSettings</Filter>
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="createLine.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="ProgramTypes.h">
-      <Filter>Arquivos de Origem\Types</Filter>
+      <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="ProgramSettings.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
