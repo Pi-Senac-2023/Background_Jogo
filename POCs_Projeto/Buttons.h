@@ -14,5 +14,7 @@ typedef struct ButtonSettings {
 
 int checkButtonOnSpace(PositionMouse* mouse ,ButtonSettings* button);
 
+void createButton(ButtonSettings* Button);
+
 void freeAllSettings(ButtonSettings* Button);
 #endif

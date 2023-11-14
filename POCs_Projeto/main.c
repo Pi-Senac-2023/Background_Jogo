@@ -1,38 +1,119 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
 #include "AllegroSettings.h"
 #include "ProgramTypes.h"
+#include <stdlib.h>
+#include <string.h>
 #include "Buttons.h"
 
+int** setScreenConfig(DisplaySettings* Display) {
+    int** screen = malloc(Display->Height * sizeof(int*));
+    if (screen) {
+        for (int i = 0; i < Display->Height; i++) {
+            screen[i] = malloc(Display->Width * sizeof(int*));
+        }
+    }
+    return screen;
+}
+
+void tracejarLinha(int** matriz, int x1, int y1, int x2, int y2) {
+    int dx, dy, p, x, y;
+
+    dx = x2 - x1;
+    dy = y2 - y1;
+
+    x = x1;
+    y = y1;
+
+    p = 2 * dy - dx;
+
+    while (x < x2) {
+        if (p >= 0) {
+            matriz[y][x] = 2;
+            y++;
+            p = p + 2 * dy - 2 * dx;
+        }
+        else {
+            matriz[y][x] = 2;
+            p = p + 2 * dy;
+        }
+        printf("x:%d y:%d\n", x, y);
+        x++;
+    }
+}
+
+void createLine(DisplaySettings* Display, int color) {
+    int* pos = malloc(sizeof(int) * 4);
+    int index = 0;
+    for (int i = 0; i < Display->Height; i++) {
+        for (int j = 0; j < Display->Width; j++) {
+            if (Display->screen[i][j] == 3 && pos) {
+                pos[index++] = j;
+                pos[index++] = i;
+
+                if (Display->screen[i][j] == 3)
+                    Display->screen[i][j] = 4;
+
+                al_draw_circle(j, i, 4, al_map_rgb(0, 255, 0), 4);
+            }
+        }
+    }
+
+    tracejarLinha(Display->screen, pos[0], pos[1], pos[2], pos[3]);
+    switch (color) {
+        case 1:
+            al_draw_line(pos[0], pos[1], pos[2], pos[3], al_map_rgb(255, 0, 0), 4);
+            break;
+        case 2:
+            al_draw_line(pos[0], pos[1], pos[2], pos[3], al_map_rgb(0, 255, 0), 4);
+            break;
+    }
+
+    index = 0;
+
+    free(pos);
+}
 
 int main()
 {
     DisplaySettings* Display = malloc(sizeof(DisplaySettings));
     PositionMouse* Mouse = malloc(sizeof(PositionMouse));
-    ButtonSettings* Button = malloc(sizeof(ButtonSettings));
-    ButtonSettings* ButtonT = malloc(sizeof(ButtonSettings));
+    ButtonSettings* Button1 = malloc(sizeof(ButtonSettings));
+    ButtonSettings* Button2 = malloc(sizeof(ButtonSettings));
 
-    
-
-    if (Display != NULL && Mouse != NULL) {
+    if (Display && Mouse) {
         Display->Height = 720;
         Display->Width = 920;
+        Display->screen = setScreenConfig(Display);
         Mouse->x = 0;
         Mouse->y = 0;
 
-        Button->buttonX = 100;
-        Button->buttonY = 100;
-        Button->width = 120;
-        Button->height = 100;
+        Button1->buttonX = 100;
+        Button1->buttonY = 100;
+        Button1->width = 120;
+        Button1->height = 100;
 
 
-        ButtonT->buttonX = 250;
-        ButtonT->buttonY = 10;
-        ButtonT->width = 220;
-        ButtonT->height = 180;
+        Button2->buttonX = 250;
+        Button2->buttonY = 10;
+        Button2->width = 220;
+        Button2->height = 180;
 
+        int counter = 0;
+        int value = 0;
+        int flag = 0;
+
+        if (Display->screen) {
+            for (int i = 0; i < Display->Height; i++) {
+                for (int j = 0; j < Display->Width; j++) {
+                    Display->screen[i][j] = 1;
+                    counter++;
+                }
+            }
+        }
 
         initialize();
 
@@ -51,16 +132,15 @@ int main()
         bool redraw = true;
         ALLEGRO_EVENT event;
         al_start_timer(timer);
+        int links = 0;
 
-        
-
-        while (1)
+        while (true)
         {
+
             bool done = false;
 
-            createButton(Button);
-
-            createButton(ButtonT);
+            createButton(Button1);
+            createButton(Button2);
 
             al_wait_for_event(queue, &event);
 
@@ -76,24 +156,32 @@ int main()
                 Mouse->y = event.mouse.y;
                 break;
             case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
-                if (event.mouse.button == 1) {
-                    al_draw_filled_rectangle(Mouse->x - 15, Mouse->y - 15, Mouse->x + 15, Mouse->y + 15, al_map_rgb(0, 0, 255));
-                    int btn1 = checkButtonOnSpace(Mouse, Button);  
-                    int btn2 = checkButtonOnSpace(Mouse, ButtonT);
-
-                    if (btn1 == 1) {
-                        al_clear_to_color(al_map_rgb(0, 55, 0));
+                if (event.mouse.button == 1 && Display->screen) {
+                    if (checkButtonOnSpace(Mouse, Button1) == 1) {
+                        value = 1;
+                        flag = 0;
                     }
                     else {
-                        if (btn2 == 1) {
-                            al_clear_to_color(al_map_rgb(55, 0, 0));
+                        if (checkButtonOnSpace(Mouse, Button2) == 1) {
+                            value = 2;
+                            flag = 0;
                         }
                     }
+                    printf("valor: %d", value);  
+                    
                 }
-                else {
-                    al_draw_filled_rectangle(Mouse->x - 15, Mouse->y - 15, Mouse->x + 15, Mouse->y + 15, al_map_rgb(255, 0, 0));
+                if (value != 0 && flag > 0) {
+                    int x = Mouse->x;
+                    int y = Mouse->y;
+                    Display->screen[--y][--x] = 3;
+                    links++;
+                    if (links == 2) {
+                        createLine(Display, value);
+                        links = 0;
+                    }
                 }
-
+                flag++;
+                break;
             }
 
             if (done) break;
@@ -106,6 +194,7 @@ int main()
         }
 
         finish(timer, queue, disp, font);
+        freeScreen(Display);
         freeAllTypes(Display, Mouse);
     }
     return 0;

@@ -5,6 +5,7 @@
 typedef struct DisplaySettings {
     int Width;
     int Height;
+    int** screen;
 } DisplaySettings;
 
 typedef struct PositionMouse {
@@ -13,4 +14,5 @@ typedef struct PositionMouse {
 } PositionMouse;
 
 void freeAllTypes(DisplaySettings* Display, PositionMouse* Mouse);
+void freeScreen(DisplaySettings* Display);
 #endif

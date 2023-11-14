@@ -1,3 +1,2 @@
 ﻿  main.c
-C:\Users\pepem\OneDrive\Documentos\dev\POCs_Projeto\POCs_projeto\main.c(61,13): warning C4013: 'createButton' indefinido; assumindo extern retornando int
   POCs_projeto.vcxproj -> C:\Users\pepem\OneDrive\Documentos\dev\POCs_Projeto\x64\Debug\POCs_projeto.exe
