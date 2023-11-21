@@ -18,8 +18,10 @@ void createClickableArea(DisplaySettings* Display, int xPoint, int yPoint, int r
     for (int x = 0; x < Display->Height; x++) {
         for (int y = 0; y < Display->Width; y++) {
             int distance = (x - xPoint) * (x - xPoint) + (y - yPoint) * (y - yPoint);
-            if(distance == radius * radius)
+            if (distance <= radius * radius) {
+                printf("teste");
                 Display->screen[x][y] = 10;
+            }
         }
     }
 
@@ -27,7 +29,7 @@ void createClickableArea(DisplaySettings* Display, int xPoint, int yPoint, int r
 
 bool isClickableArea(int** screen, int xClicked, int yClicked) {
     printf("x:%d y:%d", xClicked, yClicked);
-
+    printf("result: %d", screen[yClicked][xClicked]);
     bool response = false;
     if (screen[yClicked][xClicked] == 10)
         response = true;
@@ -74,7 +76,8 @@ int main()
         al_start_timer(timer);
         int links = 0;
 
-        createClickableArea(Display,10,10,5);
+        createClickableArea(Display,50,50,50);
+        createClickableArea(Display, 700, 700, 50);
 
         while (true)
         {
